@@ -102,7 +102,7 @@ def projects(md_text, start=0):
         img = next((f'{slug}{e}' for e in ('.jpg','.png') if (ASSETS/f'{slug}{e}').exists()), None)
         panel = (f'<img src="assets/{img}" alt="{esc(title)}" '
                  f'style="width:100%;height:100%;object-fit:cover">' if img else
-                 f'<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#14141a"/>'
+                 f'<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#e9e6de"/>'
                  f'<g id="ph{start+i}"></g></svg>')
         out.append(
             f'  <div class="proj"><div class="txt">'
