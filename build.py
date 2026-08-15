@@ -100,7 +100,7 @@ def projects(md_text, start=0):
             elif ln.startswith('url:'): url = ln[4:].strip()
         slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
         img = next((f'{slug}{e}' for e in ('.jpg','.png') if (ASSETS/f'{slug}{e}').exists()), None)
-        panel = (f'<img src="assets/{img}" alt="{esc(title)}" '
+        panel = (f'<img src="{b64(img)}" alt="{esc(title)}" '   # embedded, like banner/portrait
                  f'style="width:100%;height:100%;object-fit:cover">' if img else
                  f'<svg viewBox="0 0 400 300"><rect width="400" height="300" fill="#e9e6de"/>'
                  f'<g id="ph{start+i}"></g></svg>')
