@@ -173,7 +173,7 @@ footer a { color: var(--gold); text-decoration: none; }
 
 <div class="sec"><div class="wrap" id="agenda">
   <h2>What I work on</h2>
-  <p class="lede">Six threads run through the papers above. They overlap — climate and supply chains are really one continuous line of work — so the counts below sum to more than thirteen.</p>
+  <p class="lede">Seven threads run through the papers above. They overlap — climate and supply chains are really one continuous line of work, and several papers carry more than one tag — so the counts below sum to more than the paper count.</p>
   <div id="tbars"></div>
 
   <h3 class="sub">How the agenda moved</h3>
@@ -304,7 +304,7 @@ function renderLanes() {
   const keys = Object.keys(TOPICS);
   const yrs = [...new Set(ALL.map(p => p.y))].sort((a, b) => a - b);
   const y0 = yrs[0], y1 = yrs[yrs.length - 1];
-  const L = 196, Rm = 24, W = 1000, rowH = 44, top = 14;
+  const L = 290, Rm = 24, W = 1000, rowH = 44, top = 14;
   const H = top + keys.length * rowH + 34;
   const px = y => L + (y - y0) / (y1 - y0) * (W - L - Rm);
   let s = `<svg class="lanes" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Papers by research topic and year, 2017 to 2026">`;

@@ -26,6 +26,7 @@ topics:
   ml:   { name: "Text, ML & AI",              color: "#d95926" }
   bank: { name: "Banking & credit",           color: "#c4557f" }
   ma:   { name: "M&A & hedge funds",          color: "#4a3aa7" }
+  inn:  { name: "Innovation & human capital", color: "#0d8a99" }
 
 # Journal lists used by the auto-select pills.
 lists:

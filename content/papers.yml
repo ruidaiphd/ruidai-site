@@ -24,7 +24,7 @@ papers:
   - AFA 2022
   - EFA 2021
 - title: 'Innovating Green: Competition Meets Regulation'
-  year: 2025
+  year: 2026
   venue: Management Science
   volume: Vol. 72(3), 2398–2426
   status: Published
@@ -41,9 +41,9 @@ papers:
   - NFA 2021
   - CICF 2021
 - title: Revealing or Concealing? The Competitive Landscape of Bad News Disclosure
-  year: 2025
+  year: 2026
   venue: Journal of Corporate Finance
-  volume: ''
+  volume: 'Vol. 97, 102930'
   status: Published
   lists: []
   topics:
@@ -214,3 +214,59 @@ working:
   - BNP Paribas AM
   - EFA 2022
   - FIRS 2022
+- title: Asymmetric Underreaction to Managerial Sentiment
+  year: 2025
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - ml
+  coauthors:
+  - Nataliya Zaiats
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5084286
+  notes: []
+- title: 'Race, Gender, and Employee Turnover: Evidence from Mergers and Acquisitions'
+  year: 2025
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - ma
+  - inn
+  coauthors:
+  - Tingting Liu
+  - Roman Wang
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5280455
+  notes:
+  - ECGI Blog
+- title: 'Turning on a Virtuous Cycle across Corporations: The Diversity Spillover Effect through Female Leadership Exposure'
+  year: 2025
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - esg
+  - inn
+  coauthors:
+  - Lili Dai
+  - Ling Lei Lisic
+  - Zihang Peng
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5162069
+  notes: []
+- title: 'Creativity without Walls: The Case of Open Innovation'
+  year: 2025
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - inn
+  coauthors:
+  - Anahit Mkrtchyan
+  - John Bai
+  - Chi Wan
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5150413
+  notes: []
