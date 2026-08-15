@@ -132,7 +132,8 @@ r = (r.replace('__BANNER__', b64('banner.jpg'))
       .replace('__WPS__',    ''.join(row(p, len(working)-i) for i, p in enumerate(working)))
       .replace('__WORK__',   work_html)
       .replace('__TEACHING__', teach_html)
-      .replace('__PLACEHOLDERS__', (TPL/'placeholders.js').read_text()))
+      .replace('__PLACEHOLDERS__', (TPL/'placeholders.js').read_text())
+      .replace('__D3__', (TPL/'d3-slim.min.js').read_text()))
 (OUT/'research.html').write_text(r)
 
 roles = '<div class="roles">' + ''.join(

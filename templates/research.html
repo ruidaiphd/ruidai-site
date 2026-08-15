@@ -6,7 +6,7 @@
 <title>Research — Rui Dai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media=\'all\'">
 <style>
 :root {
   --paper: #f2f1ee; --ink: #2c2b28; --dim: #6e6d68; --faint: #98978f;
@@ -211,7 +211,9 @@ __TEACHING__
 
 <footer>Rui Dai · <a href="mailto:rd55@usf.edu">rd55@usf.edu</a> · University of South Florida</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>/* d3 (selection, force, drag) bundled inline so the page has no CDN dependency */
+__D3__
+</script>
 <script>
 const TOPICS = __TOPICS__;
 const LISTS = __LISTS__;
