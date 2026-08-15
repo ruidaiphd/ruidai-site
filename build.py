@@ -68,6 +68,17 @@ def b64(name):
 
 def esc(s): return html.escape(str(s), quote=True)
 
+def fontcss():
+    """@font-face rules with the woff2 files embedded, so the pages need no font host (works offline / in China)."""
+    out = []
+    for f in sorted((TPL/'fonts').glob('*.woff2')):
+        fam, wt = ('Barlow Condensed' if f.name.startswith('barlow') else 'Inter'), re.search(r'-(\d{3})-', f.name).group(1)
+        data = base64.b64encode(f.read_bytes()).decode()
+        out.append(f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{wt};font-display:swap;"
+                   f"src:url(data:font/woff2;base64,{data}) format('woff2');}}")
+    return '\n'.join(out)
+FONTS = fontcss()
+
 def row(p, n):
     marks = ''.join(
         f'<span class="mark" onclick="setF(\'list\',\'{l}\')">{LISTS[l]["label"]}</span>'
@@ -123,7 +134,7 @@ bnote = {'all': 'All peer-reviewed output, newest first. '
 bnote.update({k: v['note'] for k, v in LISTS.items()})
 
 r = (TPL/'research.html').read_text()
-r = (r.replace('__BANNER__', b64('banner.jpg'))
+r = (r.replace('__FONTS__', FONTS).replace('__BANNER__', b64('banner.jpg'))
       .replace('__TOPICS__', json.dumps({k: {'name': v['name'], 'c': v['color']} for k, v in TOPICS.items()}, ensure_ascii=False))
       .replace('__LISTS__',  json.dumps({'all':'All', **{k: v['label'] for k, v in LISTS.items()}, 'other':'Other'}, ensure_ascii=False))
       .replace('__BNOTE__',  json.dumps(bnote, ensure_ascii=False))
@@ -144,7 +155,7 @@ links = ''.join(f'<a href="{esc(l["url"])}">{esc(l["label"])}</a>' for l in site
 study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','').replace('</p>','')
 
 h = (TPL/'home.html').read_text()
-h = (h.replace('__PORTRAIT__', b64('portrait.jpg'))
+h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
       .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
 (OUT/'home.html').write_text(h)
 
