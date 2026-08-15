@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rui Dai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #d99a2b; --disp: 'Barlow Condensed', 'Arial Narrow', sans-serif; --body: 'Inter', -apple-system, sans-serif; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: #0b0b0f; color: #fff; font-family: var(--body); overflow: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30; height: 50px;
+  display: flex; align-items: center; justify-content: center; gap: 30px;
+  font-family: var(--disp); font-size: 15px; letter-spacing: .16em; text-transform: uppercase;
+}
+nav a { color: rgba(255,255,255,.72); text-decoration: none; }
+nav a:hover, nav a.on { color: var(--gold); }
+
+.photo {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 62%; z-index: 0; pointer-events: none;
+  background-image: url(__PORTRAIT__);
+  background-repeat: no-repeat; background-position: 52% 10%; background-size: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 26%, rgba(0,0,0,.72) 58%, #000 88%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 26%, rgba(0,0,0,.72) 58%, #000 88%);
+}
+.veil {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(100deg, #0b0b0f 0%, rgba(11,11,15,.93) 30%, rgba(11,11,15,.58) 52%, rgba(11,11,15,.22) 76%, rgba(11,11,15,.3) 100%),
+    linear-gradient(180deg, rgba(11,11,15,.8) 0%, rgba(11,11,15,0) 24%, rgba(11,11,15,0) 66%, rgba(11,11,15,.88) 100%);
+}
+
+main {
+  position: relative; z-index: 3; height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  max-width: 1180px; margin: 0 auto; padding: 0 2.5rem;
+}
+h1 {
+  font-family: var(--disp); font-weight: 200; margin: 0 0 1.5rem;
+  font-size: clamp(50px, 9.5vw, 118px); line-height: .92; letter-spacing: .1em; text-transform: uppercase;
+}
+.roles { margin-bottom: 1.7rem; }
+.role { font-family: var(--disp); text-transform: uppercase; letter-spacing: .09em; line-height: 1.42; margin-bottom: .95rem; }
+.role b { display: block; font-weight: 400; font-size: clamp(16px, 1.95vw, 22px); color: #f0efea; }
+.role span { display: block; font-weight: 300; font-size: clamp(14px, 1.55vw, 17.5px); color: #9d9c96; }
+.study {
+  max-width: 555px; font-size: clamp(14.5px, 1.4vw, 16.5px); line-height: 1.78; color: #c4c3bd;
+  border-left: 2px solid rgba(217,154,43,.5); padding-left: 1.3rem; margin: 0;
+}
+.links { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 22px; font-size: 13.5px; }
+.links a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(217,154,43,.28); padding-bottom: 2px; }
+.links a:hover { border-color: var(--gold); }
+
+.enter { position: fixed; bottom: 32px; left: 0; right: 0; z-index: 4; display: flex; justify-content: center; gap: clamp(26px, 7vw, 86px); }
+.enter a { color: rgba(255,255,255,.78); text-decoration: none; text-align: center;
+  font-family: var(--disp); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.enter a:hover { color: var(--gold); }
+.enter svg { display: block; margin: 0 auto 6px; }
+
+@media (max-width: 900px) {
+    .photo { width: 100%; background-position: 52% 6%; background-size: cover;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.5) 58%, transparent 80%);
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0,0,0,.5) 58%, transparent 80%); }
+  .veil { background: linear-gradient(180deg, rgba(11,11,15,.62) 0%, rgba(11,11,15,.86) 42%, rgba(11,11,15,.95) 70%); }
+}
+@media (max-width: 640px) { nav { gap: 16px; font-size: 13px; } .enter { gap: 20px; bottom: 22px; } .study { padding-left: 1rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="on">Home</a>
+  <a href="research.html">Research</a>
+  <a href="research.html#work">Data &amp; tools</a>
+  <a href="research.html#teaching">Teaching</a>
+  <a href="mailto:rd55@usf.edu">Contact</a>
+</nav>
+
+<div class="photo"></div>
+<div class="veil"></div>
+
+<main>
+  <h1>Rui Dai</h1>
+  __ROLES__
+  <p class="study">__STUDY__</p>
+  <div class="links">__LINKS__</div>
+</main>
+
+<div class="enter">
+  <a href="research.html">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+      <circle cx="20" cy="20" r="4"/><circle cx="7" cy="10" r="2.4"/><circle cx="33" cy="9" r="2.4"/>
+      <circle cx="6" cy="31" r="2.4"/><circle cx="32" cy="31" r="2.4"/>
+      <path d="M17 17 9.5 11.5M23 17 30.5 11M17.5 23 8.5 29M23 23 30 29"/>
+    </svg>Research</a>
+  <a href="research.html#work">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+      <rect x="5" y="8" width="30" height="24" rx="2"/><path d="M5 14h30M11 20h6M11 25h13M22 19l4 4 4-7"/>
+    </svg>Data</a>
+  <a href="research.html#teaching">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M20 9 4 15l16 6 16-6z"/><path d="M10 18v9c0 2 4.5 4 10 4s10-2 10-4v-9M33 17v8"/>
+    </svg>Teaching</a>
+  <a href="mailto:rd55@usf.edu">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+      <rect x="5" y="9" width="30" height="22" rx="2"/><path d="m5 12 15 10 15-10"/>
+    </svg>Contact</a>
+</div>
+
+</body>
+</html>

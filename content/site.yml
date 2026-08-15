@@ -1,0 +1,33 @@
+# Identity, navigation, and topic definitions. Edit here, then run build.py.
+name: Rui Dai
+email: rd55@usf.edu
+
+roles:
+  - title: Assistant Professor of Finance
+    org: |
+      Kate Tiedemann School of Business and Finance
+      University of South Florida
+  - title: Research Affiliate
+    org: |
+      Wharton Research Data Services (WRDS)
+      University of Pennsylvania
+
+links:
+  - { label: Curriculum vitae, url: "cv.pdf" }
+  - { label: Google Scholar,   url: "https://scholar.google.com/citations?user=yh9JYGIAAAAJ&hl=en" }
+  - { label: LinkedIn,         url: "http://www.linkedin.com/in/rui-dai-wrds" }
+  - { label: rd55@usf.edu,     url: "mailto:rd55@usf.edu" }
+
+# Research topics. Add or rename freely — bars, lanes, tags and the network all follow.
+topics:
+  esg:  { name: "ESG & climate",              color: "#2a78d6" }
+  sc:   { name: "Supply chains & disclosure", color: "#1b9e70" }
+  ss:   { name: "Short selling",              color: "#c98500" }
+  ml:   { name: "Text, ML & AI",              color: "#d95926" }
+  bank: { name: "Banking & credit",           color: "#c4557f" }
+  ma:   { name: "M&A & hedge funds",          color: "#4a3aa7" }
+
+# Journal lists used by the auto-select pills.
+lists:
+  utd24: { label: UTD24, note: "The UT Dallas 24 list, used in the UTD business-school research rankings." }
+  ft50:  { label: FT50,  note: "The Financial Times 50 list, used in the FT research rank. Includes the UTD24 papers." }

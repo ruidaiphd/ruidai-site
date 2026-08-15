@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research — Rui Dai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f2f1ee; --ink: #2c2b28; --dim: #6e6d68; --faint: #98978f;
+  --gold: #d99a2b; --rule: #d6d4cd; --card: #fbfbf9;
+  --disp: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --body: 'Inter', -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.65; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30; height: 50px;
+  display: flex; align-items: center; justify-content: center; gap: 28px;
+  background: rgba(16,16,20,.9); backdrop-filter: blur(10px);
+  font-family: var(--disp); font-size: 15px; letter-spacing: .16em; text-transform: uppercase;
+}
+nav a { color: rgba(255,255,255,.76); text-decoration: none; }
+nav a:hover, nav a.on { color: var(--gold); }
+
+.band {
+  position: relative; height: 52vh; min-height: 320px; overflow: hidden; background: #14110b;
+  background-image: url(__BANNER__);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.band::after { content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(20,17,11,.22) 0%, rgba(20,17,11,.48) 62%, rgba(20,17,11,.7) 100%); }
+.band h1 {
+  position: absolute; inset: 0; z-index: 3; margin: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--disp); font-weight: 200; color: #fff;
+  font-size: clamp(44px, 8.5vw, 100px); letter-spacing: .17em; text-transform: uppercase; padding-left: .17em;
+}
+
+.wrap { max-width: 1060px; margin: 0 auto; padding: 3.2rem 2rem 3.8rem; }
+h2 { font-family: var(--disp); font-weight: 400; font-size: clamp(30px, 4.4vw, 46px); letter-spacing: .07em; text-transform: uppercase; margin: 0 0 .4rem; color: #43423d; }
+.lede { color: var(--dim); max-width: 640px; margin: 0 0 2.2rem; }
+.sec { border-top: 1px solid var(--rule); }
+
+.pills { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 1.6rem; }
+.pill {
+  font-family: var(--disp); font-size: 15px; letter-spacing: .17em; text-transform: uppercase;
+  color: #8d8b83; background: none; cursor: pointer; flex: 1 1 0; min-width: 150px;
+  border: 1px solid #c0a97f; border-radius: 2px; padding: 13px 18px;
+  display: flex; align-items: baseline; justify-content: center; gap: 10px;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.pill span { font-size: 13px; letter-spacing: .08em; color: var(--faint); }
+.pill:hover { color: #55534d; border-color: var(--gold); }
+.pill.on { color: #2c2b28; border-color: var(--gold); background: rgba(217,154,43,.1); }
+.pill.on span { color: #a8801f; }
+.note { font-size: 13px; color: var(--faint); margin: -.6rem 0 1.6rem; }
+
+.tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.search { font-family: var(--body); font-size: 13.5px; padding: 6px 11px; border: 1px solid var(--rule); border-radius: 2px; background: var(--card); color: var(--ink); width: 200px; }
+.search:focus { outline: none; border-color: var(--gold); }
+.chip { font-family: var(--disp); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 2px; background: var(--card); cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.chip:hover { border-color: var(--gold); }
+.chip .x { color: var(--faint); }
+.count { font-family: var(--disp); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-left: auto; }
+
+.item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.item:hover { background: rgba(217,154,43,.045); }
+.num { font-family: var(--disp); font-size: 15px; color: var(--faint); width: 26px; flex: none; padding-top: 3px; text-align: right; }
+.bd { flex: 1; min-width: 0; }
+.ttl { font-size: 15.5px; font-weight: 500; line-height: 1.42; }
+.ttl a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(44,43,40,.25); }
+.ttl a:hover { border-color: var(--gold); }
+.au { color: var(--dim); font-size: 14px; margin-top: 3px; }
+.au span { cursor: pointer; border-bottom: 1px dotted transparent; }
+.au span:hover { color: var(--ink); border-color: var(--gold); }
+.ven { font-family: var(--disp); font-size: 15.5px; letter-spacing: .04em; color: #55534d; margin-top: 3px; }
+.ven em { font-style: normal; color: var(--faint); }
+.marks { margin-top: 6px; }
+.mark { display: inline-block; font-family: var(--disp); font-size: 13px; letter-spacing: .13em; text-transform: uppercase; padding: 1px 8px; border: 1px solid #c0a97f; border-radius: 2px; color: #8a6410; margin: 3px 5px 0 0; }
+.tag { display: inline-block; font-family: var(--disp); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 1px 9px; border-radius: 2px; cursor: pointer; margin: 3px 4px 0 0; }
+.badge { display: inline-block; font-size: 11.5px; padding: 1px 8px; border-radius: 2px; background: rgba(217,154,43,.13); color: #8a6410; margin: 4px 5px 0 0; }
+.empty { color: var(--faint); padding: 2rem 0; }
+
+h3.sub { font-family: var(--disp); font-weight: 400; font-size: 21px; letter-spacing: .13em; text-transform: uppercase; color: var(--dim); margin: 2.6rem 0 1.1rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 15px; font-family: var(--disp); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+.legend span { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.dot { width: 9px; height: 9px; border-radius: 2px; }
+.hint { font-size: 12.5px; color: var(--faint); margin-top: 10px; }
+
+.tbar { display: grid; grid-template-columns: 190px 1fr 34px; align-items: center; gap: 14px; padding: 7px 0; cursor: pointer; }
+.tbar:hover .tname { color: var(--ink); }
+.tname { font-family: var(--disp); font-size: 16px; letter-spacing: .09em; text-transform: uppercase; color: #55534d; }
+.ttrack { height: 12px; background: #e4e2db; border-radius: 2px; overflow: hidden; }
+.tfill { height: 100%; border-radius: 2px; }
+.tnum { font-family: var(--disp); font-size: 16px; color: var(--faint); text-align: right; }
+
+.lanes { width: 100%; }
+.lanes text { font-family: var(--disp); letter-spacing: .09em; text-transform: uppercase; }
+
+.colayout { display: grid; grid-template-columns: 1fr 264px; gap: 26px; align-items: start; }
+#net { background: #14141a; border-radius: 3px; overflow: hidden; }
+#net svg { display: block; }
+.colist h4 { font-family: var(--disp); font-weight: 400; font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: var(--faint); margin: 0 0 .7rem; }
+.corow { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); cursor: pointer; font-size: 14px; }
+.corow:hover { color: var(--gold); }
+.corow .cn { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.corow .cd { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.corow .cc { font-family: var(--disp); font-size: 15px; color: var(--faint); }
+.corow.on { color: var(--gold); }
+.more { font-size: 12.5px; color: var(--faint); margin-top: .7rem; }
+@media (max-width: 860px) { .colayout { grid-template-columns: 1fr; } }
+
+.proj { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+.proj:nth-child(even) .txt { order: 2; }
+.proj h3 { font-family: var(--disp); font-size: 26px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; margin: 0 0 .5rem; }
+.proj h3 a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold); }
+.proj .kick { font-family: var(--disp); font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+.proj p { margin: 0 0 .8rem; }
+.shot { background: #14141a; border-radius: 2px; overflow: hidden; aspect-ratio: 4/3; }
+.shot svg { display: block; width: 100%; height: 100%; }
+.swap { border-left: 3px solid var(--gold); padding: .9rem 1.2rem; background: #e8e7e2; font-size: 14px; color: #55534d; }
+
+footer { background: #14141a; color: #97968f; padding: 2.6rem 2rem; text-align: center; font-size: 13.5px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 760px) {
+  .proj { grid-template-columns: 1fr; gap: 1.4rem; }
+  .proj:nth-child(even) .txt { order: 0; }
+  nav { gap: 14px; font-size: 13px; }
+  .pill { flex: 1 1 40%; min-width: 0; padding: 11px 10px; font-size: 14px; letter-spacing: .1em; }
+  .count { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="#top" class="on">Research</a>
+  <a href="#coauthors">Coauthors</a>
+  <a href="#work">Data &amp; tools</a>
+  <a href="#teaching">Teaching</a>
+</nav>
+
+<div class="band" id="top">
+  <h1>Research</h1>
+</div>
+
+<div class="wrap">
+  <h2>Publications</h2>
+  <p class="lede">Peer-reviewed journal articles and conference proceedings, including papers accepted and forthcoming. Filter by journal list, or click any topic or coauthor to narrow further.</p>
+
+  <div class="pills" id="pills"></div>
+  <p class="note" id="listnote"></p>
+
+  <div class="tools">
+    <input class="search" id="q" type="search" placeholder="Search publications…" aria-label="Search publications">
+    <span id="chips"></span>
+    <span class="count" id="count"></span>
+  </div>
+  <div id="pubs">__PUBS__</div>
+</div>
+
+<div class="sec"><div class="wrap">
+  <h2>Working papers</h2>
+  <p class="lede">Work in progress, with links to the current draft.</p>
+  <div id="wps">__WPS__</div>
+</div></div>
+
+<div class="sec"><div class="wrap" id="agenda">
+  <h2>What I work on</h2>
+  <p class="lede">Six threads run through the papers above. They overlap — climate and supply chains are really one continuous line of work — so the counts below sum to more than thirteen.</p>
+  <div id="tbars"></div>
+
+  <h3 class="sub">How the agenda moved</h3>
+  <p class="lede" style="margin-bottom:1.2rem">Each mark is a paper. Hollow marks are still working papers.</p>
+  <div id="lanes"></div>
+</div></div>
+
+<div class="sec"><div class="wrap" id="coauthors">
+  <h2>Coauthors</h2>
+  <p class="lede">Every paper forms a clique among its authors, so the shape shows which collaborations cluster. Node size is joint papers; colour is the topic that pairing returns to most.</p>
+  <div class="legend" id="legend"></div>
+  <div class="colayout">
+    <div id="net"></div>
+    <div class="colist">
+      <h4>Most frequent</h4>
+      <div id="colist"></div>
+      <p class="more">Hover a name to trace it in the graph. Click to filter the publications above.</p>
+    </div>
+  </div>
+</div></div>
+
+<div class="sec"><div class="wrap" id="work">
+  <h2>Data &amp; tools</h2>
+  <p class="lede">Papers are one output. These are the datasets, tools, and interactive appendices that came out of them — the parts other researchers actually pick up and use.</p>
+
+__WORK__
+  <div class="swap"><strong>Swap these in.</strong> The four panels are generated placeholders. Replace each with a real screenshot — the embedding space, the appendix interface, a sample of the crosswalk, a parsed filing.</div>
+</div></div>
+
+<div class="sec"><div class="wrap" id="teaching">
+  <h2>Teaching</h2>
+  <p class="lede">Courses in empirical finance and financial data science, plus a teaching note on working with large financial datasets that has circulated well beyond my own classroom.</p>
+__TEACHING__
+</div></div>
+
+<footer>Rui Dai · <a href="mailto:rd55@usf.edu">rd55@usf.edu</a> · University of South Florida</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+const TOPICS = __TOPICS__;
+const LISTS = __LISTS__;
+const BNOTE_SRC = __BNOTE__;
+const BNOTE = BNOTE_SRC;
+const onList = (p, l) => l === 'all' ? true : l === 'other' ? p.L.length === 0 : p.L.includes(l);
+
+const DATA = __DATA__;
+const PAPERS = DATA.papers, WORKING = DATA.working;
+const ALL = PAPERS.concat(WORKING);
+
+let F = { list: 'all', topic: null, author: null, q: '' };
+const inList = p => onList(p, F.list);
+const sel = () => PAPERS.filter(p => inList(p) &&
+  (!F.topic || p.k.includes(F.topic)) && (!F.author || p.a.includes(F.author)) &&
+  (!F.q || (p.t + ' ' + p.j + ' ' + p.a.join(' ')).toLowerCase().includes(F.q)));
+function setF(k, v) { F[k] = (F[k] === v ? (k === 'list' ? 'all' : null) : v); render(); }
+window.setF = setF;
+const esc = s => JSON.stringify(s).replace(/"/g, '&quot;');
+
+function row(p, i) {
+  return `<div class="item">
+    <div class="num">${i}</div>
+    <div class="bd">
+      <div class="ttl"><a href="${p.u}" target="_blank" rel="noopener">${p.t}</a></div>
+      <div class="au">${p.a.map(a => `<span onclick="setF('author',${esc(a)})">${a}</span>`).join(', ')}</div>
+      <div class="ven">${p.j}${p.v ? ', ' + p.v : ''} <em>(${p.y}${p.s === 'Forthcoming' ? ', forthcoming' : ''})</em></div>
+      <div class="marks">
+        ${['utd24','ft50'].filter(l => p.L.includes(l)).map(l =>
+          `<span class="mark" onclick="setF('list','${l}')">${LISTS[l]}</span>`).join('')}
+        ${p.k.map(k => `<span class="tag" style="background:${TOPICS[k].c}22;color:${TOPICS[k].c}" onclick="setF('topic','${k}')">${TOPICS[k].name}</span>`).join('')}
+      </div>
+      ${p.n.length ? `<div>${p.n.map(x => `<span class="badge">${x}</span>`).join('')}</div>` : ''}
+    </div></div>`;
+}
+
+function renderPills() {
+  document.getElementById('pills').innerHTML = Object.keys(LISTS).map(l => {
+    const n = PAPERS.filter(p => onList(p, l)).length;
+    return `<button class="pill ${F.list === l ? 'on' : ''}" onclick="setF('list','${l}')">${LISTS[l]} <span>${n}</span></button>`;
+  }).join('');
+  document.getElementById('listnote').textContent = BNOTE[F.list];
+}
+
+function render() {
+  renderPills();
+  const s = sel();
+  const chips = [];
+  if (F.topic) chips.push(['topic', TOPICS[F.topic].name]);
+  if (F.author) chips.push(['author', F.author]);
+  document.getElementById('chips').innerHTML = chips.map(([k, v]) =>
+    `<span class="chip" onclick="setF('${k}',null)">${v}<span class="x">×</span></span>`).join('');
+  document.getElementById('count').textContent = s.length + (s.length === 1 ? ' paper' : ' papers');
+
+  document.getElementById('pubs').innerHTML = s.length
+    ? s.map((p, i) => row(p, s.length - i)).join('')
+    : `<div class="empty">No publications match these filters.</div>`;
+  document.getElementById('wps').innerHTML = WORKING.map((p, i) => row(p, WORKING.length - i)).join('');
+  drawNet();
+}
+document.getElementById('q').oninput = e => { F.q = e.target.value.toLowerCase().trim(); render(); };
+
+document.getElementById('legend').innerHTML = Object.entries(TOPICS).map(([k, t]) =>
+  `<span onclick="setF('topic','${k}')"><span class="dot" style="background:${t.c}"></span>${t.name}</span>`).join('');
+
+const stat = {};
+ALL.forEach(p => p.a.forEach(a => {
+  stat[a] = stat[a] || { n: 0, k: {} }; stat[a].n++;
+  p.k.forEach(k => stat[a].k[k] = (stat[a].k[k] || 0) + 1);
+}));
+const nodes = [{ id: 'Rui Dai', n: 13, hub: 1, c: '#ece8db' }].concat(Object.keys(stat).map(a => ({
+  id: a, n: stat[a].n, c: TOPICS[Object.keys(stat[a].k).sort((x, y) => stat[a].k[y] - stat[a].k[x])[0]].c })));
+const links = [];
+ALL.forEach(p => { const g = ['Rui Dai'].concat(p.a);
+  for (let i = 0; i < g.length; i++) for (let j = i + 1; j < g.length; j++) links.push({ source: g[i], target: g[j] }); });
+
+function renderTopics() {
+  const cnt = {}; Object.keys(TOPICS).forEach(k => cnt[k] = 0);
+  ALL.forEach(p => p.k.forEach(k => cnt[k]++));
+  const max = Math.max(...Object.values(cnt));
+  document.getElementById('tbars').innerHTML = Object.keys(TOPICS)
+    .sort((a, b) => cnt[b] - cnt[a])
+    .map(k => `<div class="tbar" onclick="setF('topic','${k}')">
+      <div class="tname">${TOPICS[k].name}</div>
+      <div class="ttrack"><div class="tfill" style="width:${(cnt[k] / max * 100).toFixed(1)}%;background:${TOPICS[k].c}"></div></div>
+      <div class="tnum">${cnt[k]}</div></div>`).join('');
+}
+
+function renderLanes() {
+  const keys = Object.keys(TOPICS);
+  const yrs = [...new Set(ALL.map(p => p.y))].sort((a, b) => a - b);
+  const y0 = yrs[0], y1 = yrs[yrs.length - 1];
+  const L = 196, Rm = 24, W = 1000, rowH = 44, top = 14;
+  const H = top + keys.length * rowH + 34;
+  const px = y => L + (y - y0) / (y1 - y0) * (W - L - Rm);
+  let s = `<svg class="lanes" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Papers by research topic and year, 2017 to 2026">`;
+  for (let y = y0; y <= y1; y++)
+    s += `<line x1="${px(y)}" y1="${top}" x2="${px(y)}" y2="${top + keys.length * rowH - 10}" stroke="#e0ded6"/>`;
+  keys.forEach((k, i) => {
+    const cy = top + i * rowH + rowH / 2 - 5;
+    s += `<text x="${L - 14}" y="${cy + 5}" text-anchor="end" font-size="14.5" fill="#6e6d68">${TOPICS[k].name}</text>`;
+    s += `<line x1="${L}" y1="${cy}" x2="${W - Rm}" y2="${cy}" stroke="#e0ded6" stroke-dasharray="1 5"/>`;
+    const inLane = ALL.filter(p => p.k.includes(k));
+    const byYear = {};
+    inLane.forEach(p => { byYear[p.y] = byYear[p.y] || []; byYear[p.y].push(p); });
+    Object.entries(byYear).forEach(([yr, ps]) => ps.forEach((p, j) => {
+      const off = (j - (ps.length - 1) / 2) * 15, wp = p.s === 'Working paper';
+      s += `<circle cx="${px(+yr) + off}" cy="${cy}" r="7.5"
+        fill="${wp ? 'none' : TOPICS[k].c}" stroke="${TOPICS[k].c}" stroke-width="${wp ? 1.8 : 0}"
+        opacity="${wp ? .9 : .85}"><title>${p.t} · ${p.j} (${p.y})</title></circle>`;
+    }));
+  });
+  const yb = top + keys.length * rowH + 6;
+  for (let y = y0; y <= y1; y++)
+    s += `<text x="${px(y)}" y="${yb + 12}" text-anchor="middle" font-size="14" fill="#98978f">${String(y).slice(2)}</text>`;
+  document.getElementById('lanes').innerHTML = s + `</svg>`;
+}
+
+const nbr = {};
+links.forEach(l => {
+  (nbr[l.source] = nbr[l.source] || new Set()).add(l.target);
+  (nbr[l.target] = nbr[l.target] || new Set()).add(l.source);
+});
+let sim, nodeSel, linkSel, hover = null;
+
+function buildNet() {
+  const W = 760, H = 520, R = d => d.hub ? 21 : 6 + d.n * 4;
+  const svg = d3.select('#net').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+  linkSel = svg.append('g').selectAll('path').data(links).join('path')
+    .attr('fill', 'none').attr('stroke', '#d6a660').attr('stroke-width', 1);
+  nodeSel = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor', 'pointer')
+    .on('click', (e, d) => setF('author', d.hub ? null : d.id))
+    .on('mouseenter', (e, d) => { hover = d.id; paint(); })
+    .on('mouseleave', () => { hover = null; paint(); });
+  nodeSel.append('circle').attr('class', 'ring').attr('r', d => R(d) + 5)
+    .attr('fill', 'none').attr('stroke', d => d.c).attr('stroke-width', 1).attr('opacity', 0);
+  nodeSel.append('circle').attr('class', 'core').attr('r', R)
+    .attr('fill', d => d.c).attr('stroke', '#14141a').attr('stroke-width', 2.5);
+  nodeSel.append('text').attr('class', 'lbl').text(d => d.id).attr('text-anchor', 'middle')
+    .attr('dy', d => R(d) + 15).attr('font-size', d => d.hub ? 13.5 : 12)
+    .attr('fill', '#c6c5be').attr('font-family', "'Inter',sans-serif");
+  sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(92).strength(.18))
+    .force('charge', d3.forceManyBody().strength(-330))
+    .force('center', d3.forceCenter(W / 2, H / 2))
+    .force('collide', d3.forceCollide().radius(d => R(d) + 21))
+    .on('tick', () => {
+      nodes.forEach(d => { d.x = Math.max(62, Math.min(W - 62, d.x)); d.y = Math.max(24, Math.min(H - 30, d.y)); });
+      linkSel.attr('d', d => {
+        const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
+        const r = Math.hypot(dx, dy) * 2.6;
+        return `M${d.source.x},${d.source.y}A${r},${r} 0 0,1 ${d.target.x},${d.target.y}`;
+      });
+      nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+  nodeSel.call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) sim.alphaTarget(.25).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+}
+
+function paint() {
+  if (!nodeSel) return;
+  const live = new Set();
+  sel().concat(WORKING).forEach(p => p.a.forEach(a => live.add(a)));
+  const near = hover ? new Set([hover, ...(nbr[hover] || [])]) : null;
+  const lit = d => d.hub || live.has(d.id);
+  const on = d => lit(d) && (!near || near.has(d.id));
+  nodeSel.attr('opacity', d => on(d) ? 1 : (lit(d) ? .3 : .13));
+  nodeSel.select('.ring').attr('opacity', d => (hover && d.id === hover) ? .9 : 0);
+  nodeSel.select('.lbl').attr('fill', d => (hover && d.id === hover) ? '#ece8db' : '#c6c5be');
+  linkSel
+    .attr('opacity', d => {
+      const a = d.source.id ?? d.source, b = d.target.id ?? d.target;
+      if (!live.has(b) && b !== 'Rui Dai') return .08;
+      return near ? ((near.has(a) && near.has(b)) ? .85 : .07) : .3;
+    })
+    .attr('stroke-width', d => {
+      const a = d.source.id ?? d.source, b = d.target.id ?? d.target;
+      return (near && near.has(a) && near.has(b)) ? 1.8 : 1;
+    });
+  document.querySelectorAll('.corow').forEach(r =>
+    r.classList.toggle('on', r.dataset.a === (F.author || hover)));
+}
+const drawNet = paint;
+
+function renderColist() {
+  const top = nodes.filter(d => !d.hub).sort((a, b) => b.n - a.n || a.id.localeCompare(b.id)).slice(0, 9);
+  document.getElementById('colist').innerHTML = top.map(d =>
+    `<div class="corow" data-a="${d.id}" onclick="setF('author',${esc(d.id)})"
+       onmouseenter="hover='${d.id.replace(/'/g, "\\'")}';paint()" onmouseleave="hover=null;paint()">
+      <span class="cn"><span class="cd" style="background:${d.c}"></span>${d.id}</span>
+      <span class="cc">${d.n}</span></div>`).join('');
+}
+window.paint = paint;
+
+buildNet();
+renderTopics();
+renderLanes();
+renderColist();
+render();
+
+
+__PLACEHOLDERS__
+</script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+# Rui Dai — publication record. Edit here; run `python3 build.py` to regenerate the site.
+# status: Published | Forthcoming | Working paper
+# lists:  utd24, ft50   (leave empty for neither)
+# topics: esg, sc, ss, ml, bank, ma  (see topics.yml)
+
+papers:
+- title: Market Efficiency When Machines Access Information
+  year: 2026
+  venue: Management Science
+  volume: ''
+  status: Forthcoming
+  lists:
+  - ft50
+  - utd24
+  topics:
+  - ml
+  coauthors:
+  - Leonidas Barbopoulos
+  - Tālis Putniņš
+  - Anthony Saunders
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3783221
+  notes:
+  - NYU Yuki Arai Prize
+  - AFA 2022
+  - EFA 2021
+- title: 'Innovating Green: Competition Meets Regulation'
+  year: 2025
+  venue: Management Science
+  volume: Vol. 72(3), 2398–2426
+  status: Published
+  lists:
+  - ft50
+  - utd24
+  topics:
+  - esg
+  coauthors:
+  - Rui Duan
+  - Lilian Ng
+  url: https://doi.org/10.1287/mnsc.2023.00600
+  notes:
+  - NFA 2021
+  - CICF 2021
+- title: Revealing or Concealing? The Competitive Landscape of Bad News Disclosure
+  year: 2025
+  venue: Journal of Corporate Finance
+  volume: ''
+  status: Published
+  lists: []
+  topics:
+  - sc
+  coauthors:
+  - Rui Duan
+  - Lilian Ng
+  url: https://www.sciencedirect.com/science/article/abs/pii/S0929119925001981
+  notes:
+  - CICF 2019
+- title: 'Global Zombie Companies: Measurements, Determinants, and Outcomes'
+  year: 2024
+  venue: Journal of International Business Studies
+  volume: Vol. 55, 723–744
+  status: Published
+  lists:
+  - ft50
+  - utd24
+  topics:
+  - bank
+  coauthors:
+  - Edward Altman
+  - Wei Wang
+  url: https://doi.org/10.1057/s41267-024-00689-4
+  notes:
+  - Bloomberg News
+  - Turnaround Time Podcast
+  - CICF 2022
+- title: Global Outsourcing and Voluntary Disclosure
+  year: 2024
+  venue: Journal of Business Finance & Accounting
+  volume: Vol. 51(3–4), 846–879
+  status: Published
+  lists: []
+  topics:
+  - sc
+  coauthors:
+  - Lili Dai
+  - Lilian Ng
+  - Zihang Peng
+  url: https://onlinelibrary.wiley.com/doi/10.1111/jbfa.12773
+  notes:
+  - AFAANZ 2021 best paper
+- title: 'Dissemination, Publication, and Impact of Finance Research: When Novelty Meets Conventionality'
+  year: 2023
+  venue: Review of Finance
+  volume: Vol. 27(1), 79–141
+  status: Published
+  lists:
+  - ft50
+  topics:
+  - ml
+  coauthors:
+  - Lawrence Donohue
+  - Qingyi Drechsler
+  - Wei Jiang
+  url: https://doi.org/10.1093/rof/rfac024
+  notes:
+  - Interactive online appendix
+  - Corpus data release
+- title: Short Seller Attention
+  year: 2022
+  venue: Journal of Corporate Finance
+  volume: Vol. 72, 102149
+  status: Published
+  lists: []
+  topics:
+  - ss
+  coauthors:
+  - Lilian Ng
+  - Nataliya Zaiats
+  url: https://doi.org/10.1016/j.jcorpfin.2021.102149
+  notes: []
+- title: Socially Responsible Corporate Customers
+  year: 2021
+  venue: Journal of Financial Economics
+  volume: Vol. 142(2), 598–626
+  status: Published
+  lists:
+  - ft50
+  - utd24
+  topics:
+  - esg
+  - sc
+  coauthors:
+  - Hao Liang
+  - Lilian Ng
+  url: https://doi.org/10.1016/j.jfineco.2020.01.003
+  notes:
+  - Moskowitz Prize 2019
+  - Mirae Asset Daewoo Award
+  - Columbia Blue Sky Blog
+- title: 'International Lending: The Role of Lender’s Home Country'
+  year: 2021
+  venue: Journal of Money, Credit and Banking
+  volume: Vol. 53(6), 1373–1416
+  status: Published
+  lists: []
+  topics:
+  - bank
+  coauthors:
+  - Mehdi Beyhaghi
+  - Anthony Saunders
+  - John Wald
+  url: https://onlinelibrary.wiley.com/doi/10.1111/jmcb.12850
+  notes:
+  - Dealscan–Worldscope crosswalk
+- title: Do Short Sellers Anticipate Late Filings?
+  year: 2021
+  venue: Journal of Corporate Finance
+  volume: Vol. 69, 102045
+  status: Published
+  lists: []
+  topics:
+  - ss
+  coauthors:
+  - Ting Li
+  - Nataliya Zaiats
+  - Xinlei Zhao
+  url: https://doi.org/10.1016/j.jcorpfin.2021.102045
+  notes: []
+- title: Form 10-Q Itemization
+  year: 2021
+  venue: ACM CIKM
+  volume: Proceedings of CIKM ’21, 4817–4822
+  status: Published
+  lists: []
+  topics:
+  - ml
+  coauthors:
+  - Yanci Zhang
+  - Tianming Du
+  - Yujie Sun
+  - Lawrence Donohue
+  url: https://doi.org/10.1145/3459637.3481989
+  notes: []
+- title: 'Hedge Funds in M&A Deals: Is There Exploitation of Insider Information?'
+  year: 2017
+  venue: Journal of Corporate Finance
+  volume: Vol. 47, 23–45
+  status: Published
+  lists: []
+  topics:
+  - ma
+  coauthors:
+  - Nadia Massoud
+  - Debarshi Nandy
+  - Anthony Saunders
+  url: https://doi.org/10.1016/j.jcorpfin.2017.08.001
+  notes: []
+working:
+- title: Outsourcing Climate Change
+  year: 2026
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - esg
+  - sc
+  coauthors:
+  - Rui Duan
+  - Hao Liang
+  - Lilian Ng
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3765485
+  notes:
+  - PRI Academic Blog
+  - BNP Paribas AM
+  - EFA 2022
+  - FIRS 2022
