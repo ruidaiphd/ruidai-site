@@ -223,9 +223,11 @@ working:
   topics:
   - ml
   coauthors:
+  - Dixie Wang
   - Nataliya Zaiats
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5084286
-  notes: []
+  notes:
+  - R&R, Journal of Banking & Finance
 - title: 'Race, Gender, and Employee Turnover: Evidence from Mergers and Acquisitions'
   year: 2025
   venue: Working paper
@@ -255,7 +257,8 @@ working:
   - Ling Lei Lisic
   - Zihang Peng
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5162069
-  notes: []
+  notes:
+  - R&R, Contemporary Accounting Research
 - title: 'Creativity without Walls: The Case of Open Innovation'
   year: 2025
   venue: Working paper
@@ -269,4 +272,5 @@ working:
   - John Bai
   - Chi Wan
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5150413
-  notes: []
+  notes:
+  - R&R, Journal of Financial and Quantitative Analysis
