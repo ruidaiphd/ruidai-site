@@ -246,7 +246,7 @@ const DATA = {"papers": [{"t": "Market Efficiency When Machines Access Informati
 const PAPERS = DATA.papers, WORKING = DATA.working;
 const ALL = PAPERS.concat(WORKING);
 
-let F = { list: 'all', topic: null, author: null, q: '' };
+let F = { list: 'ft50', topic: null, author: null, q: '' };   // FT50 shown by default
 const inList = p => onList(p, F.list);
 const sel = () => PAPERS.filter(p => inList(p) &&
   (!F.topic || p.k.includes(F.topic)) && (!F.author || p.a.includes(F.author)) &&
@@ -363,6 +363,7 @@ let sim, nodeSel, linkSel, hover = null;
 function buildNet() {
   const W = 760, H = 520, R = d => d.hub ? 21 : 6 + d.n * 4;
   const svg = d3.select('#net').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
+  svg.append('defs').html('<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0.9"/></filter>');
   linkSel = svg.append('g').selectAll('path').data(links).join('path')
     .attr('fill', 'none').attr('stroke', '#b98a3a').attr('stroke-width', 1);
   nodeSel = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor', 'pointer')
@@ -372,7 +373,7 @@ function buildNet() {
   nodeSel.append('circle').attr('class', 'ring').attr('r', d => R(d) + 5)
     .attr('fill', 'none').attr('stroke', d => d.c).attr('stroke-width', 1).attr('opacity', 0);
   nodeSel.append('circle').attr('class', 'core').attr('r', R)
-    .attr('fill', d => d.c).attr('stroke', '#e9e6de').attr('stroke-width', 2.5);
+    .attr('fill', d => d.c).attr('fill-opacity', .92).attr('stroke', d => d.c).attr('stroke-opacity', .28).attr('stroke-width', 5).attr('filter', 'url(#soft)');
   nodeSel.append('text').attr('class', 'lbl').text(d => d.id).attr('text-anchor', 'middle')
     .attr('dy', d => R(d) + 15).attr('font-size', d => d.hub ? 13.5 : 12)
     .attr('fill', '#5a5852').attr('font-family', "'Inter',sans-serif");
@@ -399,7 +400,10 @@ function buildNet() {
 function paint() {
   if (!nodeSel) return;
   const live = new Set();
-  sel().concat(WORKING).forEach(p => p.a.forEach(a => live.add(a)));
+  // the graph ignores the journal-list pill (so it is fully lit by default) and only dims for topic / author / search
+  const netSel = PAPERS.filter(p => (!F.topic || p.k.includes(F.topic)) && (!F.author || p.a.includes(F.author)) &&
+    (!F.q || (p.t + ' ' + p.j + ' ' + p.a.join(' ')).toLowerCase().includes(F.q)));
+  netSel.concat(WORKING).forEach(p => p.a.forEach(a => live.add(a)));
   const near = hover ? new Set([hover, ...(nbr[hover] || [])]) : null;
   const lit = d => d.hub || live.has(d.id);
   const on = d => lit(d) && (!near || near.has(d.id));
