@@ -103,7 +103,7 @@ h3.sub { font-family: var(--disp); font-weight: 400; font-size: 21px; letter-spa
 .lanes text { font-family: var(--disp); letter-spacing: .09em; text-transform: uppercase; }
 
 .colayout { display: grid; grid-template-columns: 1fr 264px; gap: 26px; align-items: start; }
-#net { background: #14141a; border-radius: 3px; overflow: hidden; }
+#net { background: #e9e6de; border: 1px solid #d9d5cb; border-radius: 3px; overflow: hidden; }
 #net svg { display: block; }
 .colist h4 { font-family: var(--disp); font-weight: 400; font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: var(--faint); margin: 0 0 .7rem; }
 .corow { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); cursor: pointer; font-size: 14px; }
@@ -299,7 +299,7 @@ ALL.forEach(p => p.a.forEach(a => {
   stat[a] = stat[a] || { n: 0, k: {} }; stat[a].n++;
   p.k.forEach(k => stat[a].k[k] = (stat[a].k[k] || 0) + 1);
 }));
-const nodes = [{ id: 'Rui Dai', n: 13, hub: 1, c: '#ece8db' }].concat(Object.keys(stat).map(a => ({
+const nodes = [{ id: 'Rui Dai', n: 13, hub: 1, c: '#2c2b28' }].concat(Object.keys(stat).map(a => ({
   id: a, n: stat[a].n, c: TOPICS[Object.keys(stat[a].k).sort((x, y) => stat[a].k[y] - stat[a].k[x])[0]].c })));
 const links = [];
 ALL.forEach(p => { const g = ['Rui Dai'].concat(p.a);
@@ -358,7 +358,7 @@ function buildNet() {
   const W = 760, H = 520, R = d => d.hub ? 21 : 6 + d.n * 4;
   const svg = d3.select('#net').append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%');
   linkSel = svg.append('g').selectAll('path').data(links).join('path')
-    .attr('fill', 'none').attr('stroke', '#d6a660').attr('stroke-width', 1);
+    .attr('fill', 'none').attr('stroke', '#b98a3a').attr('stroke-width', 1);
   nodeSel = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor', 'pointer')
     .on('click', (e, d) => setF('author', d.hub ? null : d.id))
     .on('mouseenter', (e, d) => { hover = d.id; paint(); })
@@ -366,10 +366,10 @@ function buildNet() {
   nodeSel.append('circle').attr('class', 'ring').attr('r', d => R(d) + 5)
     .attr('fill', 'none').attr('stroke', d => d.c).attr('stroke-width', 1).attr('opacity', 0);
   nodeSel.append('circle').attr('class', 'core').attr('r', R)
-    .attr('fill', d => d.c).attr('stroke', '#14141a').attr('stroke-width', 2.5);
+    .attr('fill', d => d.c).attr('stroke', '#e9e6de').attr('stroke-width', 2.5);
   nodeSel.append('text').attr('class', 'lbl').text(d => d.id).attr('text-anchor', 'middle')
     .attr('dy', d => R(d) + 15).attr('font-size', d => d.hub ? 13.5 : 12)
-    .attr('fill', '#c6c5be').attr('font-family', "'Inter',sans-serif");
+    .attr('fill', '#5a5852').attr('font-family', "'Inter',sans-serif");
   sim = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links).id(d => d.id).distance(92).strength(.18))
     .force('charge', d3.forceManyBody().strength(-330))
@@ -399,12 +399,12 @@ function paint() {
   const on = d => lit(d) && (!near || near.has(d.id));
   nodeSel.attr('opacity', d => on(d) ? 1 : (lit(d) ? .3 : .13));
   nodeSel.select('.ring').attr('opacity', d => (hover && d.id === hover) ? .9 : 0);
-  nodeSel.select('.lbl').attr('fill', d => (hover && d.id === hover) ? '#ece8db' : '#c6c5be');
+  nodeSel.select('.lbl').attr('fill', d => (hover && d.id === hover) ? '#2c2b28' : '#5a5852');
   linkSel
     .attr('opacity', d => {
       const a = d.source.id ?? d.source, b = d.target.id ?? d.target;
       if (!live.has(b) && b !== 'Rui Dai') return .08;
-      return near ? ((near.has(a) && near.has(b)) ? .85 : .07) : .3;
+      return near ? ((near.has(a) && near.has(b)) ? .9 : .07) : .38;
     })
     .attr('stroke-width', d => {
       const a = d.source.id ?? d.source, b = d.target.id ?? d.target;
