@@ -154,9 +154,27 @@ roles = '<div class="roles">' + ''.join(
 links = ''.join(f'<a href="{esc(l["url"])}">{esc(l["label"])}</a>' for l in site['links'])
 study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','').replace('</p>','')
 
+stats_html = ''
+if (SRC/'stats.yml').exists():
+    st = yaml.safe_load((SRC/'stats.yml').read_text()) or {}
+    sc, ss = st.get('scholar') or {}, st.get('ssrn') or {}
+    fmt = lambda n: f"{int(n):,}"
+    tiles = []
+    if sc.get('citations'):
+        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(sc["citations"])}</b><span>Scholar citations</span></a>')
+    if sc.get('h_index'):
+        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{sc["h_index"]}</b><span>h-index</span></a>')
+    if ss.get('downloads'):
+        tiles.append(f'<a class="stat" href="{esc(ss.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(ss["downloads"])}</b><span>SSRN downloads</span></a>')
+    asof = st.get('as_of')
+    if tiles:
+        import datetime
+        d = asof if isinstance(asof, datetime.date) else None
+        stats_html = '<div class="stats">' + ''.join(tiles) + (f'<span class="asof">as of {d.strftime("%b %Y")}</span>' if d else '') + '</div>'
+
 h = (TPL/'home.html').read_text()
 h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
-      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
+      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links).replace('__STATS__', stats_html))
 (OUT/'home.html').write_text(h)
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)

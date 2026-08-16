@@ -1,0 +1,10 @@
+# Impact numbers shown on the home page. Refresh with:  python3 update_stats.py   (or edit by hand)
+as_of: 2026-08-15
+scholar:
+  url: https://scholar.google.com/citations?user=yh9JYGIAAAAJ&hl=en
+  citations: 1453
+  h_index: 11
+ssrn:
+  url: https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1367745
+  downloads: 25079
+  papers: 19
