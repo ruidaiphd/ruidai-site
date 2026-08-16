@@ -179,7 +179,7 @@ study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','
 
 h = (TPL/'home.html').read_text()
 h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
-      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links).replace('__STATS__', stats_home))
+      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
 (OUT/'home.html').write_text(h)
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)
