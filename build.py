@@ -187,6 +187,8 @@ cv = ASSETS/'cv.pdf'
 if cv.exists():
     shutil.copy(cv, OUT/'cv.pdf')   # keep assets/cv.pdf current; the "cv.pdf" link serves from docs/
     shutil.os.remove(OUT/'assets'/'cv.pdf')  # avoid a duplicate copy under docs/assets/
+ico = ASSETS/'favicon.ico'
+if ico.exists(): shutil.copy(ico, OUT/'favicon.ico')   # browsers request /favicon.ico by default
 (OUT/'index.html').write_text('<meta http-equiv="refresh" content="0;url=home.html">')
 (OUT/'.nojekyll').touch()          # stop GitHub Pages running Jekyll over the output
 dom = site.get('domain')

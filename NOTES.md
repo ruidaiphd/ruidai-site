@@ -1,7 +1,7 @@
 # Site notes — ruidaiwrds.info
 
 Working memory for this site: what it is, how it's wired, what was decided, and how to change things.
-Last updated 2026-08-16.
+Last updated 2026-08-16 (favicon added).
 
 ## What it is
 
@@ -42,6 +42,7 @@ Live about a minute after the push. Images on the live site are cached ~10 min; 
 | a project tile image | drop `assets/<slugified-heading>.jpg` (e.g. `fin-glove.jpg`); embedded automatically |
 | layout / styling | `templates/home.html`, `templates/research.html`, `templates/placeholders.js` |
 | fonts | `templates/fonts/*.woff2` (Barlow Condensed 200–500, Inter 400/500; OFL) |
+| tab / touch icon | `assets/favicon.svg` (source), `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png` |
 
 `docs/` is generated — never edit it by hand.
 
@@ -66,6 +67,12 @@ Live about a minute after the push. Images on the live site are cached ~10 min; 
   original design). A "portrait header on top, text below" variant was tried and rejected.
 - **Cache-busting query strings were removed** — they broke images when the page is opened as a local
   file on Windows. Tile images are embedded instead.
+- **Tab icon** is the character 睿 in gold on the site's dark rounded square, set in *Zhi Mang Xing*
+  (行草 running-cursive, OFL, from Google Fonts). Chosen over Ma Shan Zheng (楷), Long Cang (行), and
+  Liu Jian Mao Cao (草). The glyph outline was extracted with fontTools into `assets/favicon.svg`;
+  PNG/ICO sizes were rendered from it. A root `/favicon.ico` is also served (build.py copies it) because
+  browsers request that path by default and Chrome caches "no icon" aggressively — if a new icon
+  doesn't appear, open the site in a fresh tab or Ctrl+F5.
 - **Working papers under R&R** are noted with a badge (e.g. "R&R, Journal of Banking & Finance") rather
   than a separate status; `status` stays `Working paper`.
 
