@@ -165,6 +165,11 @@ r = (r.replace('__FONTS__', FONTS).replace('__STATS__', stats_html).replace('__B
       .replace('__D3__', (TPL/'d3-slim.min.js').read_text()))
 (OUT/'research.html').write_text(r)
 
+stats_home = ''
+if stats_html:
+    hm = [t for t in tiles if 'h-index' not in t]
+    stats_home = '<div class="stats">' + ''.join(hm) + (f'<span class="asof">as of {d.strftime("%b %Y")}</span>' if d else '') + '</div>'
+
 roles = '<div class="roles">' + ''.join(
     f'<div class="role"><b>{esc(x["title"])}</b><span>'
     + '<br>'.join(esc(l) for l in x['org'].strip().split('\n')) + '</span></div>'
@@ -174,7 +179,7 @@ study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','
 
 h = (TPL/'home.html').read_text()
 h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
-      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
+      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links).replace('__STATS__', stats_home))
 (OUT/'home.html').write_text(h)
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)

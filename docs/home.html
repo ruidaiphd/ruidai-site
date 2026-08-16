@@ -58,6 +58,12 @@ h1 {
 .links { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 22px; font-size: 13.5px; }
 .links a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(217,154,43,.28); padding-bottom: 2px; }
 .links a:hover { border-color: var(--gold); }
+.stats { margin-top: 1.9rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 34px; }
+.stat { text-decoration: none; color: inherit; }
+.stat b { display: block; font-family: var(--disp); font-weight: 300; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: .04em; color: #f0efea; line-height: 1.1; }
+.stat span { display: block; font-family: var(--disp); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: #9d9c96; margin-top: 3px; }
+.stat:hover b { color: var(--gold); }
+.stats .asof { font-size: 11.5px; color: #6f6e69; padding-bottom: 4px; }
 
 
 .enter { position: fixed; bottom: 32px; left: 0; right: 0; z-index: 4; display: flex; justify-content: center; gap: clamp(26px, 7vw, 86px); }
@@ -88,7 +94,7 @@ main { padding-bottom: 96px; }
   h1 { margin-bottom: 1rem; font-size: clamp(44px, 8vw, 96px); }
   .roles { margin-bottom: 1.1rem; } .role { margin-bottom: .6rem; }
   .study { font-size: 14.5px; line-height: 1.6; }
-  .links { margin-top: 1.4rem; }
+  .links { margin-top: 1.4rem; } .stats { margin-top: 1.2rem; } .stat b { font-size: 24px; }
 }
 </style>
 </head>
@@ -111,6 +117,7 @@ main { padding-bottom: 96px; }
 and machine learning to measure what firms disclose, what they conceal, and what
 markets actually learn.</p>
   <div class="links"><a href="cv.pdf">Curriculum vitae</a><a href="https://scholar.google.com/citations?user=yh9JYGIAAAAJ&amp;hl=en">Google Scholar</a><a href="http://www.linkedin.com/in/rui-dai-wrds">LinkedIn</a></div>
+  <div class="stats"><a class="stat" href="https://scholar.google.com/citations?user=yh9JYGIAAAAJ&amp;hl=en" target="_blank" rel="noopener"><b>1,453</b><span>Scholar citations</span></a><a class="stat" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1367745" target="_blank" rel="noopener"><b>25,079</b><span>SSRN downloads</span></a><span class="asof">as of Aug 2026</span></div>
 </main>
 
 <div class="enter">
