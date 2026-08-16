@@ -133,8 +133,26 @@ bnote = {'all': 'All peer-reviewed output, newest first. '
          'other': 'Peer-reviewed journals and conference proceedings outside both lists.'}
 bnote.update({k: v['note'] for k, v in LISTS.items()})
 
+stats_html = ''
+if (SRC/'stats.yml').exists():
+    st = yaml.safe_load((SRC/'stats.yml').read_text()) or {}
+    sc, ss = st.get('scholar') or {}, st.get('ssrn') or {}
+    fmt = lambda n: f"{int(n):,}"
+    tiles = []
+    if sc.get('citations'):
+        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(sc["citations"])}</b><span>Scholar citations</span></a>')
+    if sc.get('h_index'):
+        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{sc["h_index"]}</b><span>h-index</span></a>')
+    if ss.get('downloads'):
+        tiles.append(f'<a class="stat" href="{esc(ss.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(ss["downloads"])}</b><span>SSRN downloads</span></a>')
+    asof = st.get('as_of')
+    if tiles:
+        import datetime
+        d = asof if isinstance(asof, datetime.date) else None
+        stats_html = '<div class="stats">' + ''.join(tiles) + (f'<span class="asof">as of {d.strftime("%b %Y")}</span>' if d else '') + '</div>'
+
 r = (TPL/'research.html').read_text()
-r = (r.replace('__FONTS__', FONTS).replace('__BANNER__', b64('banner.jpg'))
+r = (r.replace('__FONTS__', FONTS).replace('__STATS__', stats_html).replace('__BANNER__', b64('banner.jpg'))
       .replace('__TOPICS__', json.dumps({k: {'name': v['name'], 'c': v['color']} for k, v in TOPICS.items()}, ensure_ascii=False))
       .replace('__LISTS__',  json.dumps({'all':'All', **{k: v['label'] for k, v in LISTS.items()}, 'other':'Other'}, ensure_ascii=False))
       .replace('__BNOTE__',  json.dumps(bnote, ensure_ascii=False))
@@ -154,25 +172,9 @@ roles = '<div class="roles">' + ''.join(
 links = ''.join(f'<a href="{esc(l["url"])}">{esc(l["label"])}</a>' for l in site['links'])
 study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','').replace('</p>','')
 
-stats_html = ''
-if (SRC/'stats.yml').exists():
-    st = yaml.safe_load((SRC/'stats.yml').read_text()) or {}
-    sc, ss = st.get('scholar') or {}, st.get('ssrn') or {}
-    fmt = lambda n: f"{int(n):,}"
-    tiles = []
-    if sc.get('citations'):
-        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(sc["citations"])}</b><span>Scholar citations</span></a>')
-    if ss.get('downloads'):
-        tiles.append(f'<a class="stat" href="{esc(ss.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(ss["downloads"])}</b><span>SSRN downloads</span></a>')
-    asof = st.get('as_of')
-    if tiles:
-        import datetime
-        d = asof if isinstance(asof, datetime.date) else None
-        stats_html = '<div class="stats">' + ''.join(tiles) + (f'<span class="asof">as of {d.strftime("%b %Y")}</span>' if d else '') + '</div>'
-
 h = (TPL/'home.html').read_text()
 h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
-      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links).replace('__STATS__', stats_html))
+      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
 (OUT/'home.html').write_text(h)
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)
