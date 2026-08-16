@@ -162,8 +162,6 @@ if (SRC/'stats.yml').exists():
     tiles = []
     if sc.get('citations'):
         tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(sc["citations"])}</b><span>Scholar citations</span></a>')
-    if sc.get('h_index'):
-        tiles.append(f'<a class="stat" href="{esc(sc.get("url","#"))}" target="_blank" rel="noopener"><b>{sc["h_index"]}</b><span>h-index</span></a>')
     if ss.get('downloads'):
         tiles.append(f'<a class="stat" href="{esc(ss.get("url","#"))}" target="_blank" rel="noopener"><b>{fmt(ss["downloads"])}</b><span>SSRN downloads</span></a>')
     asof = st.get('as_of')
