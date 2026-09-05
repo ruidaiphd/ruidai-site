@@ -195,6 +195,48 @@ papers:
   url: https://doi.org/10.1016/j.jcorpfin.2017.08.001
   notes: []
 working:
+- title: 'When AI-Washing Meets Initial Public Offerings'
+  year: 2026
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - ml
+  - sc
+  coauthors:
+  - Gary Guo
+  - Bohui Zhang
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7388279
+  notes: []
+- title: 'Buying Green or Being Seen? Social Image, Impact, and Beliefs in Rooftop Solar'
+  year: 2026
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - esg
+  coauthors:
+  - Yongqiang Chu
+  - Roman Wang
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7413640
+  notes: []
+- title: 'The AI Investment Boom and Housing Wealth: Evidence from Data Centers'
+  year: 2026
+  venue: Working paper
+  volume: ''
+  status: Working paper
+  lists: []
+  topics:
+  - ml
+  - inn
+  coauthors:
+  - Henrik Cronqvist
+  - Mitch Warachka
+  - Frank Yu
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7283198
+  notes: []
 - title: Outsourcing Climate Change
   year: 2026
   venue: Working paper
@@ -228,7 +270,7 @@ working:
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5084286
   notes:
   - R&R, Journal of Banking & Finance
-- title: 'Race, Gender, and Employee Turnover: Evidence from Mergers and Acquisitions'
+- title: 'Employee Turnover in the Spotlight: Evidence from Mergers and Acquisitions'
   year: 2025
   venue: Working paper
   volume: ''
