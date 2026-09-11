@@ -1,5 +1,5 @@
 # Impact numbers shown on the home page. Refresh with:  python3 update_stats.py   (or edit by hand)
-as_of: 2026-09-05
+as_of: 2026-09-11
 scholar:
   url: https://scholar.google.com/citations?user=yh9JYGIAAAAJ&hl=en
   citations: 1472
@@ -7,4 +7,4 @@ scholar:
 ssrn:
   url: https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=1367745
   downloads: 25343
-  papers: 20
+  papers: 21
