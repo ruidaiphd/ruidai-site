@@ -1,6 +1,7 @@
 domain: ruidaiwrds.info
 # Identity, navigation, and topic definitions. Edit here, then run build.py.
 name: Rui Dai
+credentials: [PhD, CFA]   # shown under the name on the home page and in the research footer
 email: rd55@usf.edu
 
 roles:

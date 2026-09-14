@@ -46,6 +46,10 @@ h1 {
   font-family: var(--disp); font-weight: 200; margin: 0 0 1.5rem;
   font-size: clamp(50px, 9.5vw, 118px); line-height: .92; letter-spacing: .1em; text-transform: uppercase;
 }
+.cred {
+  font-family: var(--disp); font-weight: 300; letter-spacing: .2em;
+  font-size: clamp(14px, 1.5vw, 18px); color: #d99a2b; margin: -.7rem 0 1.5rem;
+}
 .roles { margin-bottom: 1.7rem; }
 .role { font-family: var(--disp); text-transform: uppercase; letter-spacing: .09em; line-height: 1.42; margin-bottom: .95rem; }
 .role b { display: block; font-weight: 400; font-size: clamp(16px, 1.95vw, 22px); color: #f0efea; }
@@ -76,6 +80,7 @@ h1 {
 main { padding-bottom: 96px; }
 @media (max-height: 760px) {
   h1 { margin-bottom: 1rem; font-size: clamp(44px, 8vw, 96px); }
+  .cred { margin: -.4rem 0 1rem; }
   .roles { margin-bottom: 1.1rem; } .role { margin-bottom: .6rem; }
   .study { font-size: 14.5px; line-height: 1.6; }
   .links { margin-top: 1.4rem; }
@@ -96,6 +101,7 @@ main { padding-bottom: 96px; }
 
 <main>
   <h1>Rui Dai</h1>
+  __CRED__
   __ROLES__
   <p class="study">__STUDY__</p>
   <div class="links">__LINKS__</div>

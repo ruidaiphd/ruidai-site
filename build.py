@@ -163,6 +163,7 @@ r = (r.replace('__FONTS__', FONTS).replace('__STATS__', stats_html).replace('__B
       .replace('__TEACHING__', teach_html)
       .replace('__PLACEHOLDERS__', (TPL/'placeholders.js').read_text())
       .replace('__D3__', (TPL/'d3-slim.min.js').read_text()))
+r = r.replace('__CREDF__', (', ' + ', '.join(esc(str(c)) for c in site['credentials'])) if site.get('credentials') else '')
 (OUT/'research.html').write_text(r)
 
 stats_home = ''
@@ -175,11 +176,13 @@ roles = '<div class="roles">' + ''.join(
     + '<br>'.join(esc(l) for l in x['org'].strip().split('\n')) + '</span></div>'
     for x in site['roles']) + '</div>'
 links = ''.join(f'<a href="{esc(l["url"])}">{esc(l["label"])}</a>' for l in site['links'])
+cred = [esc(str(c)) for c in (site.get('credentials') or [])]
+cred_html = f'<p class="cred">{" &middot; ".join(cred)}</p>' if cred else ''
 study = markdown.Markdown().convert((SRC/'home.md').read_text()).replace('<p>','').replace('</p>','')
 
 h = (TPL/'home.html').read_text()
 h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
-      .replace('__ROLES__', roles).replace('__STUDY__', study).replace('__LINKS__', links))
+      .replace('__ROLES__', roles).replace('__CRED__', cred_html).replace('__STUDY__', study).replace('__LINKS__', links))
 (OUT/'home.html').write_text(h)
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)

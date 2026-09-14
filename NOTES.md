@@ -33,7 +33,7 @@ Live about a minute after the push. Images on the live site are cached ~10 min; 
 | Want to change… | Edit |
 |---|---|
 | a paper, coauthor, R&R note, award | `content/papers.yml` (see README for the field list) |
-| topics/colours, roles, links, journal lists, domain | `content/site.yml` |
+| topics/colours, roles, links, journal lists, domain, `credentials` (PhD, CFA under the name on home + research footer) | `content/site.yml` |
 | the "what I study" line | `content/home.md` |
 | Data & tools / Teaching entries | `content/work.md`, `content/teaching.md` |
 | citation / download numbers | `content/stats.yml` — or run `python update_stats.py` |
@@ -86,7 +86,7 @@ Live about a minute after the push. Images on the live site are cached ~10 min; 
   Sentiment (R&R, JBF); Race, Gender, and Employee Turnover (Tingting Liu, Roman Wang); Turning on a
   Virtuous Cycle (R&R, CAR); Creativity without Walls (R&R, JFQA). New topic key `inn`
   ("Innovation & human capital") added for them.
-- Stats as of 2026-08-15: 1,453 Scholar citations, h-index 11, 25,079 SSRN downloads (19 papers).
+- Stats as of 2026-09-14: 1,485 Scholar citations, h-index 11, 25,343 SSRN downloads (21 papers).
   Scholar id `yh9JYGIAAAAJ`, SSRN per_id `1367745`.
 
 ## Known quirks / gotchas
