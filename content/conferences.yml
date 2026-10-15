@@ -1,0 +1,38 @@
+# Conferences attended, newest first. Each event holds its own appearances.
+# Adding next year's meeting is one new block under `events:`.
+#
+# role     Presenter | Discussant | Chair | Attendee
+# session  '' when the programme gives no session number
+# slides   a PDF in assets/slides/ — build.py copies it to docs/slides/ and links it.
+#          Leave it out when there are no slides to post.
+# url      optional link (programme, paper, SSRN) — omit or '' for none
+
+events:
+  - name: 2026 FMA Annual Meeting
+    org: Financial Management Association
+    city: Tampa, FL
+    dates: October 14–17, 2026
+    appearances:
+      - date: October 15, 2026
+        role: Presenter
+        session: ''
+        title: When AI-Washing Meets Initial Public Offerings
+        authors:
+          - Rui Dai (University of South Florida)
+          - Gangxing (Gary) Guo (CUHK-Shenzhen)
+          - Bohui Zhang (CUHK-Shenzhen)
+        slides: dai-fma2026-ai-washing-ipos.pptx
+
+      - date: October 15, 2026
+        role: Discussant
+        session: 'Session 70: AI and Financial Markets'
+        title: How Rational Is AI Investment Advice? Risk-Return Relevance in AI-Based Investing
+        authors: [Lin, Gilbert, Chu, Jacoby]
+        slides: dai-fma2026-discussion-lin.pptx
+
+      - date: October 16, 2026
+        role: Discussant
+        session: 'Session 148: Corporate Green Investment & Climate Risk'
+        title: 'Climate Risk and Corporate Investment: Transmission Mechanisms and Heterogeneous Effects'
+        authors: [Avino, Chen, Hoque]
+        slides: dai-fma2026-discussion-avino.pptx

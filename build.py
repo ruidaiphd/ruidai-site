@@ -22,6 +22,7 @@ SRC, TPL, ASSETS, OUT = ROOT/'content', ROOT/'templates', ROOT/'assets', ROOT/'d
 # ---------------------------------------------------------------- load
 site   = yaml.safe_load((SRC/'site.yml').read_text())
 record = yaml.safe_load((SRC/'papers.yml').read_text())
+confs  = (yaml.safe_load((SRC/'conferences.yml').read_text()) or {}) if (SRC/'conferences.yml').exists() else {}
 TOPICS = site['topics']
 LISTS  = site['lists']
 
@@ -49,6 +50,16 @@ for p in papers + working:
         warn.append(f"missing or odd url in {p['t'][:44]!r}")
     if p['s'] not in ('Published', 'Forthcoming', 'Working paper'):
         fatal.append(f"status {p['s']!r} in {p['t'][:44]!r} (use Published/Forthcoming/Working paper)")
+ROLES = ('Presenter', 'Discussant', 'Chair', 'Attendee')
+SLIDEDIR = ASSETS/'slides'
+for e in confs.get('events') or []:
+    for a in e.get('appearances') or []:
+        if a.get('role') not in ROLES:
+            fatal.append(f"role {a.get('role')!r} in {str(a.get('title'))[:40]!r} (use {'/'.join(ROLES)})")
+        sl = a.get('slides')
+        if sl and not (SLIDEDIR/sl).exists():
+            warn.append(f"slides {sl!r} not in assets/slides/ — the row renders without a download button")
+
 names = {a for q in papers + working for a in q['a']}
 for n in sorted(names):
     if ' ' not in n: warn.append(f"coauthor {n!r} has no first name")
@@ -123,6 +134,43 @@ def projects(md_text, start=0):
             + f'</div><div class="shot">{panel}</div></div>')
     return '\n'.join(out), len(blocks)
 
+def kb(n):
+    """file size for the download button — he is often on conference wifi"""
+    return f"{n/1048576:.1f} MB" if n >= 972800 else f"{max(1, round(n/1024))} KB"
+
+def conferences(data):
+    """conferences.yml -> event sections, each with one card per appearance"""
+    out = []
+    for e in data.get('events') or []:
+        meta = ' &middot; '.join(esc(x) for x in
+                                (e.get('org'), e.get('city'), e.get('dates')) if x)
+        cards = []
+        for a in e.get('appearances') or []:
+            head = [f'<span class="role">{esc(a["role"])}</span>']
+            if a.get('date'):    head.append(f'<span class="when">{esc(a["date"])}</span>')
+            if a.get('session'): head.append(f'<span class="sess">{esc(a["session"])}</span>')
+            ttl = esc(a['title'])
+            if a.get('url'):
+                ttl = f'<a href="{esc(a["url"])}" target="_blank" rel="noopener">{ttl}</a>'
+            au = ', '.join(esc(x) for x in (a.get('authors') or []))
+            sl, dl = a.get('slides'), ''
+            if sl and (SLIDEDIR/sl).exists():
+                kind = 'PDF' if sl.lower().endswith('.pdf') else sl.rsplit('.', 1)[-1].upper()
+                dl = (f'<a class="dl" href="slides/{esc(sl)}" download>'
+                      f'<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" '
+                      f'stroke-width="1.6"><path d="M10 3v10m0 0 4-4m-4 4-4-4M3.5 16.5h13"/></svg>'
+                      f'Slides ({kind})<span class="size">{kb((SLIDEDIR/sl).stat().st_size)}</span></a>')
+            elif sl:
+                dl = '<div class="noslides">Slides to follow.</div>'
+            cards.append('    <div class="app">'
+                         f'<div class="ahead">{"".join(head)}</div>'
+                         f'<p class="atitle">{ttl}</p>'
+                         + (f'<div class="au">{au}</div>' if au else '') + dl + '</div>')
+        out.append(f'  <section class="event">\n    <h2>{esc(e["name"])}</h2>\n'
+                   + (f'    <p class="emeta">{meta}</p>\n' if meta else '')
+                   + '\n'.join(cards) + '\n  </section>')
+    return '\n'.join(out)
+
 # ---------------------------------------------------------------- render
 OUT.mkdir(exist_ok=True)
 work_html, nwork = projects((SRC/'work.md').read_text())
@@ -185,7 +233,22 @@ h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
       .replace('__ROLES__', roles).replace('__CRED__', cred_html).replace('__STUDY__', study).replace('__LINKS__', links))
 (OUT/'home.html').write_text(h)
 
+nconf = 0
+if confs.get('events'):
+    c = (TPL/'conferences.html').read_text()
+    c = (c.replace('__FONTS__', FONTS)
+          .replace('__EVENTS__', conferences(confs))
+          .replace('__CREDF__', (', ' + ', '.join(esc(str(x)) for x in site['credentials'])) if site.get('credentials') else ''))
+    (OUT/'conferences.html').write_text(c)
+    nconf = sum(len(e.get('appearances') or []) for e in confs['events'])
+
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)
+if SLIDEDIR.is_dir():
+    # slide decks stay real files, linked not embedded — multi-MB each, and the point is a fast download
+    (OUT/'slides').mkdir(exist_ok=True)
+    for f in SLIDEDIR.iterdir():
+        if f.is_file() and not f.name.startswith('.'): shutil.copy(f, OUT/'slides'/f.name)
+    shutil.rmtree(OUT/'assets'/'slides', ignore_errors=True)   # no duplicate copy under docs/assets/
 cv = ASSETS/'cv.pdf'
 if cv.exists():
     shutil.copy(cv, OUT/'cv.pdf')   # keep assets/cv.pdf current; the "cv.pdf" link serves from docs/
@@ -198,6 +261,6 @@ dom = site.get('domain')
 if dom: (OUT/'CNAME').write_text(dom + '\n')   # set `domain:` in site.yml when you're ready
 
 print(f"built  {len(papers)} publications  {len(working)} working  "
-      f"{nwork} projects  ->  docs/")
+      f"{nwork} projects  {nconf} conference appearances  ->  docs/")
 for f in sorted(OUT.glob('*.html')):
     print(f"       {f.name:16} {f.stat().st_size//1024:>4} KB")

@@ -18,6 +18,7 @@ links:
   - { label: Curriculum vitae, url: "cv.pdf" }
   - { label: Google Scholar,   url: "https://scholar.google.com/citations?user=yh9JYGIAAAAJ&hl=en" }
   - { label: LinkedIn,         url: "http://www.linkedin.com/in/rui-dai-wrds" }
+  - { label: Conferences,      url: "conferences.html" }
 
 # Research topics. Add or rename freely — bars, lanes, tags and the network all follow.
 topics:
