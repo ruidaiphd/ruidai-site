@@ -121,8 +121,10 @@ so no local pptx->pdf route worked. Swapping in PDFs later is a two-line change 
 `assets/slides/`, change the three `slides:` filenames in `content/conferences.yml`, rebuild.
 
 Also: this Mac had neither `pyyaml` nor `markdown` until now (the site had only ever been built on
-Windows); `python3 -m pip install --user pyyaml markdown` fixed it. There is no GitHub credential in
-this Mac's keychain and no SSH key, so `git push` from here fails — pushes need Rui's own terminal.
+Windows); `python3 -m pip install --user pyyaml markdown` fixed it. Pushing from this Mac now works over **SSH**: an ed25519 key was generated here
+(`~/.ssh/id_ed25519`, registered on GitHub as "Mac mini Tampa") and the remote was switched to
+`git@github.com:ruidaiphd/ruidai-site.git`. HTTPS pushes failed — no credential in the keychain, and
+the username/password prompt is a dead end since GitHub dropped password auth.
 
 ## Open items
 
