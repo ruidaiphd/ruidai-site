@@ -21,18 +21,18 @@ events:
           - Rui Dai (University of South Florida)
           - Gangxing (Gary) Guo (CUHK-Shenzhen)
           - Bohui Zhang (CUHK-Shenzhen)
-        slides: dai-fma2026-ai-washing-ipos.pptx
+        slides: dai-fma2026-ai-washing-ipos.pdf
 
       - date: October 15, 2026
         role: Discussant
         session: 'Session 70: AI and Financial Markets'
         title: How Rational Is AI Investment Advice? Risk-Return Relevance in AI-Based Investing
         authors: [Lin, Gilbert, Chu, Jacoby]
-        slides: dai-fma2026-discussion-lin.pptx
+        slides: dai-fma2026-discussion-lin.pdf
 
       - date: October 16, 2026
         role: Discussant
         session: 'Session 148: Corporate Green Investment & Climate Risk'
         title: 'Climate Risk and Corporate Investment: Transmission Mechanisms and Heterogeneous Effects'
         authors: [Avino, Chen, Hoque]
-        slides: dai-fma2026-discussion-avino.pptx
+        slides: dai-fma2026-discussion-avino.pdf

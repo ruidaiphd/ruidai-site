@@ -134,18 +134,31 @@ def projects(md_text, start=0):
             + f'</div><div class="shot">{panel}</div></div>')
     return '\n'.join(out), len(blocks)
 
+def cdate(s):
+    """'October 15, 2026' -> a date for sorting; anything unparseable sorts last"""
+    import datetime
+    for f in ('%B %d, %Y', '%b %d, %Y', '%Y-%m-%d'):
+        try: return datetime.datetime.strptime(str(s).strip(), f).date()
+        except ValueError: pass
+    return datetime.date.min
+
 def kb(n):
     """file size for the download button — he is often on conference wifi"""
     return f"{n/1048576:.1f} MB" if n >= 972800 else f"{max(1, round(n/1024))} KB"
 
 def conferences(data):
-    """conferences.yml -> event sections, each with one card per appearance"""
+    """conferences.yml -> event sections, each with one card per appearance.
+    Both levels are sorted newest first, so the deck he needs today is at the top."""
     out = []
-    for e in data.get('events') or []:
+    events = sorted(data.get('events') or [],
+                    key=lambda e: max([cdate(a.get('date')) for a in (e.get('appearances') or [])]
+                                      or [cdate(None)]), reverse=True)
+    for e in events:
         meta = ' &middot; '.join(esc(x) for x in
                                 (e.get('org'), e.get('city'), e.get('dates')) if x)
         cards = []
-        for a in e.get('appearances') or []:
+        for a in sorted(e.get('appearances') or [],
+                        key=lambda a: cdate(a.get('date')), reverse=True):
             head = [f'<span class="role">{esc(a["role"])}</span>']
             if a.get('date'):    head.append(f'<span class="when">{esc(a["date"])}</span>')
             if a.get('session'): head.append(f'<span class="sess">{esc(a["session"])}</span>')
@@ -235,19 +248,25 @@ h = (h.replace('__FONTS__', FONTS).replace('__PORTRAIT__', b64('portrait.jpg'))
 
 nconf = 0
 if confs.get('events'):
-    c = (TPL/'conferences.html').read_text()
+    c = (TPL/'slides.html').read_text()
     c = (c.replace('__FONTS__', FONTS)
           .replace('__EVENTS__', conferences(confs))
           .replace('__CREDF__', (', ' + ', '.join(esc(str(x)) for x in site['credentials'])) if site.get('credentials') else ''))
-    (OUT/'conferences.html').write_text(c)
+    (OUT/'slides.html').write_text(c)
+    # the page lived at conferences.html for a few hours; keep that URL working
+    (OUT/'conferences.html').write_text('<meta http-equiv="refresh" content="0;url=slides.html">')
     nconf = sum(len(e.get('appearances') or []) for e in confs['events'])
 
 shutil.copytree(ASSETS, OUT/'assets', dirs_exist_ok=True)
 if SLIDEDIR.is_dir():
     # slide decks stay real files, linked not embedded — multi-MB each, and the point is a fast download
     (OUT/'slides').mkdir(exist_ok=True)
+    keep = set()
     for f in SLIDEDIR.iterdir():
-        if f.is_file() and not f.name.startswith('.'): shutil.copy(f, OUT/'slides'/f.name)
+        if f.is_file() and not f.name.startswith('.'):
+            shutil.copy(f, OUT/'slides'/f.name); keep.add(f.name)
+    for f in (OUT/'slides').iterdir():       # drop decks no longer in assets/slides (e.g. replaced by PDFs)
+        if f.is_file() and f.name not in keep: f.unlink()
     shutil.rmtree(OUT/'assets'/'slides', ignore_errors=True)   # no duplicate copy under docs/assets/
 cv = ASSETS/'cv.pdf'
 if cv.exists():

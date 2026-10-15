@@ -89,7 +89,24 @@ events:
 Drop the deck in `assets/slides/` under that name and run `build.py`. The file is copied to
 `docs/slides/` and linked — **not** base64-embedded like the images, because decks run to several
 megabytes and the page exists to download them quickly on a phone. PDF or PPTX both work; the
-button labels itself from the extension and shows the file size.
+button labels itself from the extension and shows the file size. A deck removed from
+`assets/slides/` disappears from `docs/slides/` on the next build.
+
+Events and appearances are **sorted newest first by `date:`**, whatever order you type them in, so
+today's talk is at the top of the page. Same-day entries keep the order you wrote them.
+
+To post a PowerPoint deck as a PDF:
+
+```bash
+./pptx2pdf.sh ~/path/to/deck.pptx assets/slides/dai-afa2027-disclosure.pdf
+```
+
+That drives the copy of PowerPoint on the Mac (there is no LibreOffice here). It works around the
+Office sandbox, which otherwise refuses AppleScript access to your files — the script's header
+explains the two traps if it ever stops working.
+
+The page is generated at **`docs/slides.html`**; `docs/conferences.html` is a redirect kept for the
+few hours the page lived at that URL.
 
 The page is deliberately quiet: it is linked from the home page `links:` list only — not from the
 Research page, not in any top nav — and carries `noindex` so it stays out of search results. That
