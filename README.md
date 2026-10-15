@@ -66,6 +66,35 @@ Add a `## Heading` block to `content/work.md`. Optional `kick:` and `url:` lines
 in normal markdown. Drop `assets/<slug>.jpg` next to it — matching the slugified heading —
 and the real screenshot replaces the generated placeholder panel.
 
+## Adding a conference
+
+Open `content/conferences.yml`, copy the block, edit it:
+
+```yaml
+events:
+  - name: 2027 AFA Annual Meeting
+    org: American Finance Association
+    city: Chicago, IL
+    dates: January 5-7, 2027
+    appearances:
+      - date: January 6, 2027
+        role: Presenter            # Presenter | Discussant | Chair | Attendee
+        session: 'Session 12: Disclosure'   # '' when the programme gives none
+        title: Some New Paper About Disclosure
+        authors: [Rui Dai (University of South Florida), Hao Liang]
+        slides: dai-afa2027-disclosure.pdf  # a file in assets/slides/; omit for none
+        url: https://...                    # optional
+```
+
+Drop the deck in `assets/slides/` under that name and run `build.py`. The file is copied to
+`docs/slides/` and linked — **not** base64-embedded like the images, because decks run to several
+megabytes and the page exists to download them quickly on a phone. PDF or PPTX both work; the
+button labels itself from the extension and shows the file size.
+
+The page is deliberately quiet: it is linked from the home page `links:` list only — not from the
+Research page, not in any top nav — and carries `noindex` so it stays out of search results. That
+is not privacy: the URL is public and anyone with the link can read it.
+
 ## What build.py checks
 
 Before writing anything it validates the record and **stops on errors**, leaving `docs/`
