@@ -1,7 +1,7 @@
 # Site notes — ruidaiwrds.info
 
 Working memory for this site: what it is, how it's wired, what was decided, and how to change things.
-Last updated 2026-10-15 (Conferences page added, at /slides.html, decks as PDF).
+Last updated 2026-11-11 (Slate palette; banner is tinted, not gold).
 
 ## What it is
 
@@ -88,6 +88,25 @@ Live about a minute after the push. Images on the live site are cached ~10 min; 
   is what lands in a phone's Downloads folder.
 - **The conferences page skips the banner image** and uses a flat dark header instead — it is opened
   one-handed in a session room, so it loads at 180 KB against the other pages' ~500 KB.
+- **Palette is Slate, not the old parchment-and-gold.** Cream `#f4f3f0` paper with an amber accent read as
+  Anthropic's own house colours, which is what prompted the change. Tokens now: paper `#f4f3f0`, panels
+  `#e7e6e2`, hairline `#d3d1cb`, ink `#22242a`, secondary `#5c6069`, muted `#92959d`, accent `#3c4651`
+  (8.65:1 on paper), `--accent-lt` `#73879c` for near-black surfaces (5.02:1 there). The variable is
+  `--accent`, not `--gold`. Options considered and rejected: oxblood (its lifted tone on the dark pages
+  goes pink), navy (fought the banner), USF green (lowest contrast of the set).
+- **Two accent tokens, always.** The home page and the nav bars are near-black, where the base accent
+  measures about 2:1 and is unreadable. Anything accent-coloured on a dark surface uses `--accent-lt`.
+  Pick any new accent by deriving both tones and measuring, not by eye.
+- **The banner is desaturated and re-tinted in the accent** (`grayscale(1)` on `.band::before`, a tint
+  layer with `mix-blend-mode: color` above it, inside `isolation: isolate`). 78% of that photo's
+  saturated pixels are amber, so untreated it dictates the whole palette. The tint follows `--accent`
+  automatically; set its opacity to 0 for a plain monochrome band. Browsers without blend support get
+  the monochrome version. The photo itself is stock AI imagery (glowing brain, network mesh) and is
+  still the best candidate for replacement — ideally a band built at build time from `papers.yml`.
+- **Signature detail:** a 30x2px accent rule above each section title, on research and slides.
+- **Motion and focus:** one curve, `cubic-bezier(.22, 1, .36, 1)`, 120-140ms, on colour/border/transform
+  only; buttons take a .985 press. There is a real `:focus-visible` ring now — the site had none.
+- **Figures are tabular** everywhere numbers appear, so columns and the stat row stop shifting.
 - **Working papers under R&R** are noted with a badge (e.g. "R&R, Journal of Banking & Finance") rather
   than a separate status; `status` stays `Working paper`.
 
