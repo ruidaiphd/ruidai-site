@@ -8,6 +8,28 @@
 # url      optional link (programme, paper, SSRN) — omit or '' for none
 
 events:
+  - name: 2026 SFA Annual Meeting
+    org: Southern Finance Association
+    city: Palm Springs, CA
+    dates: November 18–21, 2026
+    appearances:
+      - date: November 20, 2026
+        role: Presenter
+        session: 'Session H.4: Generative AI and Corporate Financial Decisions'
+        title: When AI-Washing Meets Initial Public Offerings
+        authors:
+          - Rui Dai (University of South Florida)
+          - Gangxing (Gary) Guo (CUHK-Shenzhen)
+          - Bohui Zhang (CUHK-Shenzhen)
+        slides: dai-sfa2026-ai-washing-ipos.pdf
+
+      - date: November 20, 2026
+        role: Discussant
+        session: 'Session F.1'
+        title: Corporate Governance and Dark Pool Trading
+        authors: [Fuller, Henriksson, Valsalan]
+        slides: dai-sfa2026-discussion-darkpool.pdf
+
   - name: 2026 FMA Annual Meeting
     org: Financial Management Association
     city: Tampa, FL
